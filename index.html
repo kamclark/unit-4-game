@@ -1,0 +1,53 @@
+<!Doctype html>
+<html>
+    <head>
+      <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>Star Wars Game</title>
+    </head>
+    <body>
+        <h2 id="characterSelectPrompt">Click to Select Your Character</h2>
+        <div id ="characterSelections" class="row">
+        <img id ="player1" class ="fighterCardSelectImage" src="assets/images/characters/solo1.jpg">
+        <img id ="player2" class ="fighterCardSelectImage" src="assets/images/characters/jango1.jpg">
+        <!-- <img id ="player3" class ="fighterCardImage" src="assets/images/characters/greedo1.jpg"> -->
+      </div>
+
+        <!-- card with ratings based on character selection for user -->
+        <div id ="userCard" class="fighterCard"><div id="userName">Name: </div><br>
+        <div id="userHitpoints">HP: </div>
+        <div id="userAttack">Attack: </div>
+        <div id="userDefense">Defense: </div></div>
+        <br>
+
+        <h2>Enemies Available to Attack</h2>
+        <div id ="enemyCard1" class="fighterCard"><div id="enemy1Name">Name: </div><br>
+        <div id="enemy1Hitpoints">HP: </div>
+        <div id="enemy1Attack">Attack: </div>
+        <div id="enemy1Defense">Defense: </div></div>
+
+        <div id ="enemyCard2" class="fighterCard"><div id="userName">Name: </div><br>
+        <div id="enemy2Hitpoints">HP: </div>
+        <div id="enemy2Attack">Attack: </div>
+        <div id="enemy2Defense">Defense: </div></div><br>
+
+        <h2>Select Your Attack</h2>
+        <div id="attackSection>"
+          <div id="attackChoices" class="row">
+            <button id="attack1">abc</button>
+            <button id="attack2">abc</button>
+            <button id="attack3">abc</button>
+          </div>
+        </div>
+
+        <script src="assets/javascript/game.js"></script>
+    </body>
+</html>
