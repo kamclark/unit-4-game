@@ -1,7 +1,7 @@
 .fighterCard{
-height: 150px;
-width: 220px;
-color: white;
+height: 180px;
+width: 250px;
+color: yellow;
 font-size: 18px;
 border-style: dashed;
 border-width: 1.5px;
@@ -12,13 +12,17 @@ background-size: 100% 100%;
 
 .fighterCardSelectImage {
   height: 90px;
-  width: 100px;
+  width: 120px;
 }
 
-.fighterCardText {
-
+.button {
+  padding-left: 15px;
+  margin-left: 5px;
 }
-
+.container {
+  padding-left: 1px;
+  margin-left: 1px;
+}
 body {
   background-image: url("../images/background.jpg");
 }

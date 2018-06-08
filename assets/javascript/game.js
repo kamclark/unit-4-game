@@ -1,154 +1,196 @@
 'use strict';
 
-var solo = {
-  "id": 1,
-  "name": "Han Solo",
-  "hitpoints": 200,
-  "attackpoints": 55,
-  "defensepoints": 15,
-  "counterattackpoints": 5,
-  "attacknames": [
+var characters = {
+  solo : {
+  id: 1,
+  name: "Han Solo",
+  hitpoints: 200,
+  attackpoints: 55,
+  defensepoints: 15,
+  counterattackpoints: 5,
+  attacknames: [
     "Shoot Second",
     "Millenium Falcon",
     "Yahoo",
   ]
+  },
+
+  jango : {
+    id: 2,
+    name: "Jango Fett",
+    hitpoints: 120,
+    attackpoints: 65,
+    defensepoints: 30,
+    counterattackpoints: 5,
+    attackNames: [
+      "Laser", "Jetpack Smash", "Bowcast Shot"
+    ]
+  },
+
+  greedo : {
+    id: 3,
+    name: "Greedo",
+    hitpoints: 110,
+    attackpoints: 30,
+    defensepoints: 10,
+    counterattackpoints: 5,
+    attacknames: [
+      "Shoot First", "Dust in Eye", "Punch"
+    ]
+  },
+
+  jawa : {
+    id: 4,
+    hitpoints: 50,
+    attackpoints: 15,
+    defensepoints: 5,
+    counterattackpoints: 5,
+    attacknames: [
+      "Form Mob", "Wear Hood", "Flail"
+    ]
+  }
 };
 
-var greedo = {
-  "id": 2,
-  "name": "Greedo",
-  "hitpoints": 110,
-  "attackpoints": 30,
-  "defensepoints": 10,
-  "counterattackpoints": 5,
-  "attacknames": [
-    "Shoot First",
-    "Millenium Falcon",
-    "Yahoo",
-  ]
-};
+var character = {};
+var user = {};
 
-var jango = {
-  "id": 3,
-  "name": "Jango Fett",
-  "hitpoints": 120,
-  "attackpoints": 65,
-  "defensepoints": 30,
-  "counterattackpoints": 5,
-  "attacknames": [
-    "Clone",
-    "Jetpack",
-    "Yahoo",
-  ]
-};
+var enemy1 = {};
+var enemy2 = {};
 
-var jawa = {
-  "id": 4,
-  "name": "Jawa Raider",
-  "hitpoints": 50,
-  "attackpoints": 15,
-  "defensepoints": 5,
-  "counterattackpoints": 5,
-  "attacknames": [
-    "Mob",
-    "Wear Hood",
-    "Yahoo",
-  ]
-};
+var userSelected = false;
+var enemiesSelected = false;
 
-var userID = solo.id;
+var gameOver = false;
+
+// This function will initialize the character value from the global object variables defined above
+function loadCharacter(selectedCharacter) {
+  character.name = selectedCharacter.name;
+  character.hitpoints = selectedCharacter.hitpoints;
+  character.attackpoints = selectedCharacter.attackpoints;
+  character.defensepoints = selectedCharacter.defensepoints;
+}
+
+function loadEnemy1(selectedEnemy) {
+  enemy1.name = selectedEnemy.name;
+  enemy1.hitpoints = selectedEnemy.hitpoints;
+  enemy1.attackpoints = selectedEnemy.attackpoints;
+  enemy1.defensepoints = selectedEnemy.defensepoints;
+}
+
+function loadEnemy2(selectedEnemy) {
+  enemy2.name = selectedEnemy.name;
+  enemy2.hitpoints = selectedEnemy.hitpoints;
+  enemy2.attackpoints = selectedEnemy.attackpoints;
+  enemy2.defensepoints = selectedEnemy.defensepoints;
+}
 
 // when everything is finished loading
 $(document).ready(function() {
-  $("#player1").click(function(){
-    // on click of first character image, populate user card
+  $("#player1").on("click", function () {
+
+    // initialize character
+      loadCharacter(characters.solo);
+    // show character
     $("#userCard").css("background-image", "url(assets/images/characters/solo2.jpg)");
-    $("#userName").append(solo.name);
-    $("#userHitpoints").append(solo.hitpoints);
-    $("#userAttack").append(solo.attackpoints);
-    $("#userDefense").append(solo.defensepoints);
+    $("#userName").append(characters.solo.name);
+    $("#userHitpoints").append(characters.solo.hitpoints);
+    $("#userAttack").append(characters.solo.attackpoints);
+    $("#userDefense").append(characters.solo.defensepoints);
 
     // remove character select options
     $("#characterSelectPrompt").empty();
     $("#characterSelections").empty();
 
-    // generate random enemies
-    generateEnemies();
+    // initialize enemies
+    loadEnemy1(characters.greedo);
+    loadEnemy2(characters.jawa);
+    // show enemies
+    $("#enemyCard1").css("background-image", "url(assets/images/characters/greedo1.jpg)");
+    $("#enemy1Name").append(characters.greedo.name);
+    $("#enemy1Hitpoints").append(characters.greedo.hitpoints);
+    $("#enemy1Attack").append(characters.greedo.attackpoints);
+    $("#enemy1Defense").append(characters.greedo.defensepoints);
 
-    // update attack buttons
-    updateAttacks();
-  })
+    $("#enemyCard2").css("background-image", "url(assets/images/characters/jawa1.jpg)");
+    $("#enemy2Name").append("Jawa Raider");
+      $("#enemy2Hitpoints").append(characters.jawa.hitpoints);
+    $("#enemy2Attack").append(characters.jawa.attackpoints);
+    $("#enemy2Defense").append(characters.jawa.defensepoints);
 
+    // set user and enemy to ready so combat can start
+    userSelected = true;
+    enemiesSelected = true;
+  });
 
-    $("#player2").click(function(){
-      var userID = jango.id;
-      // on click of second character image, populate user card
-      $("#userCard").css("background-image", "url(assets/images/characters/jango2.jpg)");
-      $("#userName").append(jango.name);
-      $("#userHitpoints").append(jango.hitpoints);
-      $("#userAttack").append(jango.attackpoints);
-      $("#userDefense").append(jango.defensepoints);
+  $("#player2").on("click", function () {
 
-      // remove character select options
-      $("#characterSelectPrompt").empty();
-      $("#characterSelections").empty();
+    // initialize character
+      loadCharacter(characters.jango);
+    // show character
+    $("#userCard").css("background-image", "url(assets/images/characters/jango2.jpg)");
+    $("#userName").append(characters.jango.name);
+    $("#userHitpoints").append(characters.jango.hitpoints);
+    $("#userAttack").append(characters.jango.attackpoints);
+    $("#userDefense").append(characters.jango.defensepoints);
 
-      // generate random enemies
-      generateEnemies();
-      updateAttacks();
-    })
+    // remove character select options
+    $("#characterSelectPrompt").empty();
+    $("#characterSelections").empty();
 
-  // select random number for enemy
-  var enemyRandom = Math.round(Math.random());
+    // initialize enemies
+    loadEnemy1(characters.greedo);
+    loadEnemy2(characters.jawa);
 
-  function updateAttacks() {
-    if (userID == 1) {
-      $("#attack1").text(solo.attacknames[0]);
-      $("#attack1").val(solo.attacknames[0]);
-      $("#attack2").text(solo.attacknames[1]);
-      $("#attack2").val(solo.attacknames[1]);
-      $("#attack3").text(solo.attacknames[2]);
-      $("#attack3").val(solo.attacknames[2]);
-       }
+    // show enemies
+    $("#enemyCard1").css("background-image", "url(assets/images/characters/greedo1.jpg)");
+    $("#enemy1Name").append(characters.greedo.name);
+    $("#enemy1Hitpoints").append(characters.greedo.hitpoints);
+    $("#enemy1Attack").append(characters.greedo.attackpoints);
+    $("#enemy1Defense").append(characters.greedo.defensepoints);
 
-    else if (userID == 3) {
-      $("#attack1").text(jango.attacknames[0]);
-      $("#attack1").val(jango.attacknames[0]);
-      $("#attack2").text(jango.attacknames[1]);
-      $("#attack2").val(jango.attacknames[1]);
-      $("#attack3").text(jango.attacknames[2]);
-      $("#attack3").val(jango.attacknames[2]);
+    $("#enemyCard2").css("background-image", "url(assets/images/characters/jawa1.jpg)");
+    $("#enemy2Name").append("Jawa Raider");
+    $("#enemy2Hitpoints").append(characters.jawa.hitpoints);
+    $("#enemy2Attack").append(characters.jawa.attackpoints);
+    $("#enemy2Defense").append(characters.jawa.defensepoints);
+
+    // set user and enemy to ready so combat can start
+    userSelected = true;
+    enemiesSelected = true;
+  });
+
+  $("#attack1").on("click", function() {
+    if (userSelected == true && enemiesSelected == true && gameOver == false) {
+      enemy1.hitpoints = enemy1.hitpoints - character.attackpoints;
+      if (enemy1.hitpoints <= 0) {
+        enemy1.hitpoints = 0;
+        $("#enemyCard1").empty();
+        $("#enemyCard1").html("X");
+        $("#enemyCard1").css("color", "red");      }
+      $("#enemy1Hitpoints").empty();
+      $("#enemy1Hitpoints").html(enemy1.hitpoints);
+      console.log("Enemy 1 Remaining HP: " + enemy1.hitpoints);
+    }
+  });
+
+  $("#attack2").on("click", function() {
+    if (userSelected == true && enemiesSelected == true && gameOver == false) {
+      enemy2.hitpoints = enemy2.hitpoints - character.attackpoints;
+      if (enemy2.hitpoints <= 0) {
+        enemy2.hitpoints = 0;
+        $("#enemyCard2").empty();
+        $("#enemyCard2").html("X");
+        $("#enemyCard2").css("color", "red");
+      }
+      $("#enemy2Hitpoints").empty();
+      $("#enemy2Hitpoints").html(enemy1.hitpoints);
+      console.log("Enemy 2 Remaining HP: " + enemy2.hitpoints);
     }
 
-  }
-  function generateEnemies() {
-    if (enemyRandom == 1) {
-      $("#enemyCard1").css("background-image", "url(assets/images/characters/greedo1.jpg)");
-      $("#enemy1Name").append(greedo.name);
-      $("#enemy1Hitpoints").append(greedo.hitpoints);
-      $("#enemy1Attack").append(greedo.attackpoints);
-      $("#enemy1Defense").append(greedo.defensepoints);
-
-      $("#enemyCard2").css("background-image", "url(assets/images/characters/jawa1.jpg)");
-      $("#enemy2Name").append(jawa.name);
-      $("#enemy2Hitpoints").append(jawa.hitpoints);
-      $("#enemy2Attack").append(jawa.attackpoints);
-      $("#enemy2Defense").append(jawa.defensepoints);
+    if (enemy1.hitpoints == 0 && enemy2.hitpoints == 0) {
+      alert("You are a winner, my friend.");
     }
+  });
 
-    else if (enemyRandom == 0)
-    {
-      $("#enemyCard1").css("background-image", "url(assets/images/characters/jawa1.jpg)");
-      $("#enemy1Name").append(jawa.name);
-      $("#enemy1Hitpoints").append(jawa.hitpoints);
-      $("#enemy1Attack").append(jawa.attackpoints);
-      $("#enemy1Defense").append(jawa.defensepoints);
 
-      $("#enemyCard2").css("background-image", "url(assets/images/characters/jawa1.jpg)");
-      $("#enemy2Name").append(jawa.name);
-      $("#enemy2Hitpoints").append(jawa.hitpoints);
-      $("#enemy2Attack").append(jawa.attackpoints);
-      $("#enemy2Defense").append(jawa.defensepoints);
-    }
-  }
 });

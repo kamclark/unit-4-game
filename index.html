@@ -14,6 +14,7 @@
     <title>Star Wars Game</title>
     </head>
     <body>
+        <div class ="container">
         <h2 id="characterSelectPrompt">Click to Select Your Character</h2>
         <div id ="characterSelections" class="row">
         <img id ="player1" class ="fighterCardSelectImage" src="assets/images/characters/solo1.jpg">
@@ -23,31 +24,31 @@
 
         <!-- card with ratings based on character selection for user -->
         <div id ="userCard" class="fighterCard"><div id="userName">Name: </div><br>
-        <div id="userHitpoints">HP: </div>
+        <div id="userHitpointsLabel">HP: <div id="userHitpoints"></div>
         <div id="userAttack">Attack: </div>
         <div id="userDefense">Defense: </div></div>
+      </div>
         <br>
 
         <h2>Enemies Available to Attack</h2>
         <div id ="enemyCard1" class="fighterCard"><div id="enemy1Name">Name: </div><br>
-        <div id="enemy1Hitpoints">HP: </div>
+        <div id="enemy1HitpointsLabel">HP: <div id="enemy1Hitpoints"></div></div>
         <div id="enemy1Attack">Attack: </div>
         <div id="enemy1Defense">Defense: </div></div>
 
-        <div id ="enemyCard2" class="fighterCard"><div id="userName">Name: </div><br>
-        <div id="enemy2Hitpoints">HP: </div>
+        <div id ="enemyCard2" class="fighterCard"><div id="enemy2Name">Name: </div><br>
+        <div id="enemy2HitpointsLabel">HP: <div id="enemy2Hitpoints"></div></div>
         <div id="enemy2Attack">Attack: </div>
         <div id="enemy2Defense">Defense: </div></div><br>
 
         <h2>Select Your Attack</h2>
         <div id="attackSection>"
           <div id="attackChoices" class="row">
-            <button id="attack1">abc</button>
-            <button id="attack2">abc</button>
-            <button id="attack3">abc</button>
+            <button class ="button" id="attack1">Attack Enemy 1</button>
+            <button class ="button" id="attack2">Attack Enemy 2</button>
           </div>
         </div>
-
+      </div>
         <script src="assets/javascript/game.js"></script>
     </body>
 </html>
