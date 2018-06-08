@@ -169,6 +169,9 @@ $(document).ready(function() {
         $("#enemyCard1").css("color", "red");      }
       $("#enemy1Hitpoints").empty();
       $("#enemy1Hitpoints").html(enemy1.hitpoints);
+      if (enemy1.hitpoints == 0 && enemy2.hitpoints == 0) {
+        alert("You are a winner, my friend.");
+      }
       console.log("Enemy 1 Remaining HP: " + enemy1.hitpoints);
     }
   });
@@ -184,13 +187,14 @@ $(document).ready(function() {
       }
       $("#enemy2Hitpoints").empty();
       $("#enemy2Hitpoints").html(enemy1.hitpoints);
+      if (enemy1.hitpoints == 0 && enemy2.hitpoints == 0) {
+        alert("You are a winner, my friend.");
+      }
       console.log("Enemy 2 Remaining HP: " + enemy2.hitpoints);
     }
-
-    if (enemy1.hitpoints == 0 && enemy2.hitpoints == 0) {
-      alert("You are a winner, my friend.");
-    }
   });
-
+  if (enemy1.hitpoints == 0 && enemy2.hitpoints == 0) {
+    alert("You are a winner, my friend.");
+  }
 
 });
